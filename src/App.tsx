@@ -1,34 +1,46 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import villian from './assets/villian.png'
 import './App.css'
+import { Modifier } from './components/Modifiers'
+import { CountContainer } from './components/CountContainer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [villianCount, setVillianCount] = useState(999)
+  const [heroCount, setHeroCount] = useState(1)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header>
+        Math Clash
+      </header>
+      <div className='columns'>
+        <nav>Stats:</nav>
+
+        <div>
+
+  
+        <main className='main-screen'>
+
+          <div className='hero-container'>
+            <img className='hero-img' src={viteLogo} alt='Hero' />
+            <CountContainer count={heroCount}/>
+          </div>
+
+          <div className='villian-container'>
+            <img className='villian-img' src={villian} alt='Villian' />
+            <CountContainer count={villianCount}/>
+          </div>
+                </main>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <footer className='cards'>
+          <Modifier clickHandler={() => setVillianCount(villianCount - 1)} name='Subtract' />
+          <Modifier clickHandler={() => setVillianCount(villianCount * 2)} name='Double' />
+      </footer>
+
+</>
   )
 }
 
